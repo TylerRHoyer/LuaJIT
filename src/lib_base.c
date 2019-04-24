@@ -354,44 +354,10 @@ LJLIB_ASM(pcall)		LJLIB_REC(.)
 LJLIB_ASM_(xpcall)		LJLIB_REC(.)
 
 /* -- Base library: load Lua code ----------------------------------------- */
-
-static int load_aux(lua_State *L, int status, int envarg)
-{
-  if (status == 0) {
-    if (tvistab(L->base+envarg-1)) {
-      GCfunc *fn = funcV(L->top-1);
-      GCtab *t = tabV(L->base+envarg-1);
-      setgcref(fn->c.env, obj2gco(t));
-      lj_gc_objbarrier(L, fn, t);
-    }
-    return 1;
-  } else {
-    setnilV(L->top-2);
-    return 2;
-  }
-}
-
-static const char *reader_func(lua_State *L, void *ud, size_t *size)
-{
-  UNUSED(ud);
-  luaL_checkstack(L, 2, "too many nested functions");
-  copyTV(L, L->top++, L->base);
-  lua_call(L, 0, 1);  /* Call user-supplied function. */
-  L->top--;
-  if (tvisnil(L->top)) {
-    *size = 0;
-    return NULL;
-  } else if (tvisstr(L->top) || tvisnumber(L->top)) {
-    copyTV(L, L->base+4, L->top);  /* Anchor string in reserved stack slot. */
-    return lua_tolstring(L, 5, size);
-  } else {
-    lj_err_caller(L, LJ_ERR_RDRSTR);
-    return NULL;
-  }
-}
+// REMOVED
 
 /* -- Base library: GC control -------------------------------------------- */
-
+// REMOVED
 
 /* -- Base library: miscellaneous functions ------------------------------- */
 
