@@ -10,9 +10,9 @@
 # Copyright (C) 2005-2017 Mike Pall. See Copyright Notice in luajit.h
 ##############################################################################
 
-MAJVER=  2
+MAJVER=  3
 MINVER=  0
-RELVER=  5
+RELVER=  0
 ABIVER=  5.1
 NODOTABIVER= 51
 
